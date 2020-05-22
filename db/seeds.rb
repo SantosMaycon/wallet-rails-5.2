@@ -6,25 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Cadastrando moedas ........"
+spinner = TTY::Spinner.new("[:spinner] Cadastrando moedas...")
+spinner.auto_spin
 
-Coin.create!(
-    description: "Bitcoin",
-    acronym: "BTC",
-    url_image: "https://w7.pngwing.com/pngs/644/576/png-transparent-ethereum-bitcoin-cryptocurrency-ripple-litecoin-bitcoin-orange-logo-bitcoin.png"
-)
+coins = [
+            {
+                description: "Bitcoin",
+                acronym: "BTC",
+                url_image: "https://pngimg.com/uploads/bitcoin/bitcoin_PNG48.png"
+            },
+            {
+                description: "Ethereum",
+                acronym: "ETH",
+                url_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png/600px-ETHEREUM-YOUTUBE-PROFILE-PIC.png"
+            },
+            {
+                description: "Dash",
+                acronym: "DASH",
+                url_image: "https://pngimage.net/wp-content/uploads/2018/05/dash-png-6.png"
+            }
+        ]
 
+coins.each do |coin|
+    Coin.find_or_create_by!(coin)
+end
 
-Coin.create!(
-    description: "Ethereum",
-    acronym: "ETH",
-    url_image: "https://w7.pngwing.com/pngs/932/233/png-transparent-ethereum-blockchain-bitcoin-logo-bitcoin-angle-triangle-logo.png"
-)
-
-Coin.create!(
-    description: "Dash",
-    acronym: "DASH",
-    url_image: "https://pngimage.net/wp-content/uploads/2018/05/dash-png-6.png"
-)
-
-puts "Cadastrado com sucesso !!"
+spinner.success("(Concluído!)")
