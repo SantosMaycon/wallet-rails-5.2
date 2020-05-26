@@ -1,6 +1,8 @@
+<p><%= link_to 'Português', root_path(locale: 'pt-BR') %></p>
+<p><%= link_to 'English', root_path(locale: 'en') %></p>
 <h1>Welcome to My Wallet</h1>
 <h2><strong>Date:</strong> <%= l(Date.today) %></h2>
 <%= render "menu" %>
-<p><%= t('actual_locale')  %></p>
+<p><strong>  <%= t('actual_locale') %> </strong></p>
 <p>Você está em ambiente de <strong><%= ambiente_rails %></strong></p>
 <p>Nome informado por parâmetro na url <strong><%= @nome %></strong></p>
