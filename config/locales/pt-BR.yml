@@ -1,0 +1,9 @@
+pt-BR:
+  actual_locale: "Português Brasil"
+  ola: "Olá Mundo!"
+  links: 
+    show: 'Mostrar'
+    edit: 'Editar'
+    destroy: 'Deletar'
+    back: 'Voltar'
+  Confirm: "Você tem certeza ??"

@@ -3,10 +3,10 @@ namespace :dev do
   task setup: :environment do
     if Rails.env.development?
       show_spinner("Apagando DB...") { %x(rails db:drop:_unsafe) }
-      show_spinner("Criadando BD...") { %x(db:create) }
-      show_spinner("Migrando BD...") { %x(db:migrate) }
-      %x(db:add_coins) 
-      %x(db:add_mining_types)
+      show_spinner("Criadando BD...") { %x(rails db:create) }
+      show_spinner("Migrando BD...") { %x(rails db:migrate) }
+      %x(rails dev:add_mining_types)
+      %x(rails dev:add_coins) 
     else
       puts "Você não está em ambiente de desenvolvimento!"
     end
@@ -19,17 +19,20 @@ namespace :dev do
             {
                 description: "Bitcoin",
                 acronym: "BTC",
-                url_image: "https://pngimg.com/uploads/bitcoin/bitcoin_PNG48.png"
+                url_image: "https://pngimg.com/uploads/bitcoin/bitcoin_PNG48.png",
+                mining_type: MiningType.find_by(acronym: 'PoW')
             },
             {
                 description: "Ethereum",
                 acronym: "ETH",
-                url_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png/600px-ETHEREUM-YOUTUBE-PROFILE-PIC.png"
+                url_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png/600px-ETHEREUM-YOUTUBE-PROFILE-PIC.png",
+                mining_type: MiningType.all.sample
             },
             {
                 description: "Dash",
                 acronym: "DASH",
-                url_image: "https://pngimage.net/wp-content/uploads/2018/05/dash-png-6.png"
+                url_image: "https://pngimage.net/wp-content/uploads/2018/05/dash-png-6.png",
+                mining_type: MiningType.all.sample
             }
         ]
       coins.each do |coin|
